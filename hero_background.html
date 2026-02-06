@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ed-Tech Hero Animation - Fluid & Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0f172a;
+            --text-main: #1e293b;
+            --text-light: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-teal: #14b8a6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            background-color: #f8fafc;
+            color: var(--text-main);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Canvas Background */
+        #hero-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            /* Subtle blur to soften the canvas elements further */
+            filter: blur(0px);
+        }
+
+        /* Main Content Overlay */
+        .hero-section {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow:
+                0 4px 6px -1px rgba(0, 0, 0, 0.05),
+                0 10px 15px -3px rgba(0, 0, 0, 0.05),
+                inset 0 0 40px rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            padding: 3rem 4rem;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            animation: floatUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            opacity: 0;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 20px 25px -5px rgba(0, 0, 0, 0.05),
+                0 10px 10px -5px rgba(0, 0, 0, 0.02),
+                inset 0 0 20px rgba(255, 255, 255, 0.6);
+        }
+
+        @keyframes floatUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-main) 0%, #475569 100%);
+            ;
+          
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 99px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35);
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(255, 255, 255, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .cta-button:hover::after {
+            opacity: 1;
+        }
+
+        /* Stats Row */
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding-top: 2rem;
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-teal);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-item span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="hero-canvas"></canvas>
+
+    <div class="hero-section">
+        <div class="glass-card">
+            <h1>Master the Future<br>of Learning</h1>
+            <p>Experience an immersive, AI-driven educational platform designed to adapt to your unique learning style.
+            </p>
+            <a href="#" class="cta-button">Start Learning Now</a>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <h3>50k+</h3>
+                    <span>Students</span>
+                </div>
+                <div class="stat-item">
+                    <h3>120+</h3>
+                    <span>Courses</span>
+                </div>
+                <div class="stat-item">
+                    <h3>4.9</h3>
+                    <span>Rating</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let particles = [];
+        let blobs = [];
+
+        // Configuration
+        const config = {
+            particleCount: 40,
+            blobCount: 3,
+            baseColor: { r: 59, g: 130, b: 246 }, // Blueish base
+            colors: [
+                'rgba(59, 130, 246, 0.4)',  // Blue
+                'rgba(139, 92, 246, 0.4)',  // Purple
+                'rgba(20, 184, 166, 0.4)'   // Teal
+            ]
+        };
+
+        // Mouse Tracking for Parallax
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetMouseX = 0;
+        let targetMouseY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            targetMouseX = (e.clientX - width / 2) * 0.05; // Sensitivity
+            targetMouseY = (e.clientY - height / 2) * 0.05;
+        });
+
+        // Resize Handling
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Blob Class (Large fluid gradients)
+        class Blob {
+            constructor(color) {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.radius = Math.random() * 200 + 300; // Large size
+                this.vx = (Math.random() - 0.5) * 0.5; // Slow movement
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.color = color;
+                this.angle = Math.random() * Math.PI * 2;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.angle += 0.002;
+
+                // Bounce off edges with soft turn
+                if (this.x < -this.radius) this.vx *= -1;
+                if (this.x > width + this.radius) this.vx *= -1;
+                if (this.y < -this.radius) this.vy *= -1;
+                if (this.y > height + this.radius) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                // Create a gradient for soft edges
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+                gradient.addColorStop(0, this.color);
+                gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+                ctx.fillStyle = gradient;
+                // Add some organic squash/stretch using simple offsets if desired, 
+                // but radial gradient is smoothest for this style.
+                ctx.globalCompositeOperation = 'multiply'; // Blend them
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.globalCompositeOperation = 'source-over';
+            }
+        }
+
+        // Particle Class (Floating dots with parallax)
+        class Particle {
+            constructor() {
+                this.reset();
+                this.y = Math.random() * height; // Start anywhere
+                this.fade = Math.random(); // Start with random opacity
+                this.fadeDir = Math.random() > 0.5 ? 0.01 : -0.01;
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = height + Math.random() * 100;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = -Math.random() * 1 - 0.2; // Move up
+                this.radius = Math.random() * 3 + 1;
+                this.alpha = Math.random() * 0.5 + 0.1;
+                this.color = config.colors[Math.floor(Math.random() * config.colors.length)];
+                this.parallaxFactor = Math.random() * 2 + 0.5;
+            }
+
+            update() {
+                this.x += this.vx - (mouseX * this.parallaxFactor * 0.02); // Parallax X
+                this.y += this.vy - (mouseY * this.parallaxFactor * 0.02); // Parallax Y
+
+                // Twinkling/Fading
+                this.alpha += this.fadeDir;
+                if (this.alpha > 0.6 || this.alpha < 0.1) this.fadeDir *= -1;
+
+                if (this.y < -50) this.reset();
+                if (this.x < -50 || this.x > width + 50) this.x = Math.random() * width;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                // Convert rgba string to include dynamic alpha
+                // Quick hack: replace the opacity in the rgba string or just use globalAlpha
+                ctx.globalAlpha = Math.max(0, this.alpha);
+                ctx.fillStyle = this.color.replace('0.4)', '1)'); // Use solid color with global alpha
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        // Initialize
+        function init() {
+            blobs = [];
+            particles = [];
+            for (let i = 0; i < config.blobCount; i++) {
+                blobs.push(new Blob(config.colors[i % config.colors.length]));
+            }
+            for (let i = 0; i < config.particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        // Animation Loop
+        function animate() {
+            // Smooth mouse movement for parallax
+            mouseX += (targetMouseX - mouseX) * 0.05;
+            mouseY += (targetMouseY - mouseY) * 0.05;
+
+            // Clear with slight trail for motion blur feels? 
+            // Actually for "clean" design, full clear is better to avoid "dirty" buildup
+            // unless we want specific motion blur. Let's do full clear + separate blur logic if needed.
+            // For this style, clean is better.
+            ctx.clearRect(0, 0, width, height);
+
+            // Draw Blobs first (Background)
+            blobs.forEach(blob => {
+                blob.update();
+                blob.draw();
+            });
+
+            // Draw Particles (Foreground)
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+    </script>
+</body>
+
+</html>

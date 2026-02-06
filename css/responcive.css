@@ -1,0 +1,411 @@
+/* Responsive CSS - Consolidated and Optimized */
+
+/* =========================================
+   Global Header/Navbar Fixes 
+   (Ensures proper alignment on all devices)
+   ========================================= */
+.navbar .container {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    /* Prevent wrapping of logo and menu line */
+}
+
+.navbar .col-md-6 {
+    /* Override bootstrap column width in navbar context to allow flex spacing */
+    width: auto !important;
+    max-width: none;
+    flex: 0 0 auto;
+}
+
+/* Ensure the nav-items/menu-icon container aligns contents to the right */
+.navbar .col-md-6:last-child {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* =========================================
+   Media Queries
+   ========================================= */
+
+/* 1440px - Large Desktop & Standard Laptops */
+@media (max-width: 1440px) {
+    .container {
+        width: 90%;
+    }
+
+    .hero-text {
+        max-width: 800px;
+    }
+}
+
+/* 1024px - Laptops & Tablets Landscape */
+@media (max-width: 1024px) {
+    .hero {
+        height: 600px;
+        /* Reduce hero height */
+    }
+
+    .hero-text h1 {
+        font-size: 36px;
+    }
+
+    .hero-text p {
+        font-size: 20px;
+    }
+
+    .about {
+        flex-direction: column;
+        margin-top: 50px;
+    }
+
+    .about-text {
+        margin-right: 0;
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+
+    .abt-img {
+        width: 100%;
+        text-align: center;
+    }
+
+    .abt-img img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Ensure services grid looks good */
+    .srv-cnt {
+        margin-bottom: 30px;
+    }
+
+    /* Adjust contact boxes */
+    .contact-box,
+    .contact-box-l {
+        height: auto;
+        min-height: 280px;
+        padding: 30px 10px;
+    }
+
+    .contact-box p {
+        font-size: 13px !important;
+        word-break: break-word;
+    }
+
+    .contact-box h5 {
+        font-size: 15px;
+    }
+
+    .cntct-icon {
+        height: 60px;
+        width: 60px;
+        padding: 10px;
+    }
+
+    .cntct-icon i {
+        font-size: 25px;
+        margin-top: 0;
+    }
+
+    .ftr {
+        padding: 40px;
+    }
+
+    /* Footer layout adjustments */
+    .footer-2 {
+        margin-top: 40px;
+    }
+
+    /* Navigation: Hide Desktop, Show Mobile (Moved from 768px) */
+    .nav-links {
+        display: none !important;
+    }
+
+    .menu-icon {
+        display: block !important;
+        font-size: 30px;
+        cursor: pointer;
+        color: #333;
+    }
+
+    /* Mobile Menu Styles Override */
+    .mobile-menu {
+        top: 100%;
+        /* Align to bottom of header */
+        right: 0;
+        left: 0;
+        width: 100%;
+        /* Full width */
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        text-align: center;
+    }
+
+    .mobile-menu a {
+        display: block;
+        padding: 15px;
+        font-size: 18px;
+        font-weight: 500;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .mobile-menu a:last-child {
+        border-bottom: none;
+    }
+}
+
+/* 768px - Tablets & Large Mobile */
+@media (max-width: 768px) {
+
+    /* Navigation styles moved to 1024px breakpoint */
+
+    /* Hero Section */
+    .hero {
+        height: auto;
+        min-height: 500px;
+        padding: 80px 0;
+        background-position: center;
+    }
+
+    .hero-text {
+        padding: 30px;
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .hero-text h1 {
+        font-size: 28px;
+        line-height: 1.3;
+    }
+
+    .hero-text p {
+        font-size: 18px;
+    }
+
+    .hero-btn {
+        margin-top: 30px;
+    }
+
+    /* About Section */
+    .about {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .about h2 {
+        font-size: 24px;
+        text-align: center;
+        margin: 0 auto 20px auto;
+    }
+
+    .about-text {
+        text-align: center;
+        /* Center text on mobile */
+    }
+
+    .our-story h2 {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Vision/Mission Stack */
+    .vm-section,
+    .vm {
+        flex-direction: column;
+    }
+
+    .vm-card {
+        margin-top: 20px;
+    }
+
+    /* Services Section */
+    .srv-page,
+    .about-page,
+    .contact-page {
+        height: 200px;
+    }
+
+    .cnt h1 {
+        font-size: 32px;
+    }
+
+    .our-srv h2 {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .srv-cnt {
+        width: 100%;
+        margin-bottom: 30px;
+        height: auto;
+    }
+
+    /* Contact Section */
+    .contact-box,
+    .contact-box-l {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        height: auto;
+        padding: 40px 20px;
+    }
+
+    /* Footer */
+    .ftr {
+        text-align: center;
+        padding: 40px 15px;
+    }
+
+    .ftr-logo {
+        justify-content: center;
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+    .ftr-1 p {
+        margin: 0 auto 20px auto;
+    }
+
+    .ftr-2 h4 {
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+
+    .contact li {
+        justify-content: center;
+        /* Be careful of case sensitivity, class is .Contact in HTML? */
+    }
+
+    /* Note: HTML Uses class "Contact" (capital C) for ul list */
+    ul.Contact li {
+        justify-content: center;
+    }
+
+    .subscribtion-btn {
+        margin: 20px auto;
+        max-width: 320px;
+    }
+
+    /* Mobile Menu Styles moved to 1024px breakpoint */
+}
+
+/* 480px - Mobile Portrait */
+@media (max-width: 480px) {
+
+    .navbar .container {
+        padding: 0 10px;
+    }
+
+    .logo-area img {
+        max-width: 140px;
+        /* Resize logo */
+    }
+
+    .hero-text {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .hero-text h1 {
+        font-size: 24px;
+    }
+
+    .hero-text h2 {
+        font-size: 18px !important;
+    }
+
+    .about-page,
+    .srv-page,
+    .contact-page {
+        height: 160px;
+    }
+
+    .cnt h1 {
+        font-size: 26px;
+    }
+
+    /* Center Headings */
+    h1,
+    h2,
+    h3,
+    h4 {
+        text-align: center;
+    }
+
+    .fs-1,
+    .about-text h2,
+    .our-srv h2 {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .ftr {
+        padding: 30px 15px;
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+    }
+
+    .ftr-1 h4,
+    .ftr-2 h4 {
+        font-size: 18px;
+    }
+}
+
+/* 360px - Small Mobile Devices */
+@media (max-width: 360px) {
+    .container {
+        width: 95%;
+        /* maximize space */
+        padding: 0 5px;
+    }
+
+    .logo-area img {
+        max-width: 110px;
+    }
+
+    .menu-icon {
+        font-size: 24px;
+    }
+
+    .hero-text h1 {
+        font-size: 20px;
+    }
+
+    .hero-text p {
+        font-size: 16px;
+    }
+
+    .hero-btn a {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .vm-card {
+        padding: 15px;
+    }
+
+    .contact-box,
+    .contact-box-l {
+        padding: 20px 10px;
+    }
+
+    .contact-box h5,
+    .contact-box-l h5 {
+        font-size: 16px;
+    }
+
+    .ftr-2 input {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .sub-btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
